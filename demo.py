@@ -15,7 +15,7 @@ print(f.text)
 pprint(f.json())
 
 f.post("https://httpbin.org/post", 
-			form={"username":"jsmith", "password":"abc123"})
+            form={"username":"jsmith", "password":"abc123"})
 
 print(f.status)
 print(f.text)

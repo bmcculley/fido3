@@ -54,7 +54,7 @@ from pprint import pprint
 
 f = fido.Fetch()
 f.post("https://httpbin.org/post", 
-			form={"username":"jsmith", "password":"abc123"})
+        form={"username":"jsmith", "password":"abc123"})
 ```
 
 Then you will be able to access the following.
