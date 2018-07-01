@@ -15,7 +15,7 @@ class Fetch():
 
 
     def json(self):
-        return self.json_data
+        return json.loads(self.text)
 
 
     def get(self, url, **kwargs):
@@ -23,10 +23,12 @@ class Fetch():
             kwargs["headers"] = {
                 'User-Agent': self.user_agent
             }
+        if "params" in kwargs:
+            url = url + "?" + urlencode(kwargs["params"])
+            kwargs.pop("params", None)
         r = self.http.request("GET", url, **kwargs)
         self.status = r.status
         self.text = r.data.decode('utf-8')
-        self.json_data = json.loads(r.data.decode('utf-8'))
 
 
     def post(self, url, **kwargs):
@@ -44,7 +46,6 @@ class Fetch():
         r = self.http.request("POST", url, **kwargs)
         self.status = r.status
         self.text = r.data.decode('utf-8')
-        self.json_data = json.loads(r.data.decode('utf-8'))
 
     ''' These need to be finished
     def head(self, url, **kwargs):
